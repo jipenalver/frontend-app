@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <meta name="theme-color" content="#31d53d" />
 
-    <script src="./js/main.js" type="module"></script>
+    <script src="./js/auth/login.js" type="module"></script>
   </head>
   <body>
     <!-- Navbar -->
@@ -87,30 +87,47 @@
         <div class="col-sm-12">
           <h1 class="text-center">Login</h1>
           <hr />
+
+          <!-- Alert Notification -->
+          <div class="alert alert-success d-none" role="alert"></div>
+          <div class="alert alert-danger d-none" role="alert"></div>
+
           <!-- Form -->
-          <form>
+          <form id="form_login">
+            <!-- Email Field -->
             <div class="form-floating mb-3">
               <input
                 type="email"
                 class="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
+                name="email"
+                id="email"
+                placeholder="Email Address"
+                required
               />
-              <label for="floatingInput">Email address</label>
+              <label for="floatingInput">Email Address</label>
             </div>
+
+            <!-- Password Field -->
             <div class="form-floating mb-3">
               <input
                 type="password"
                 class="form-control"
-                id="floatingPassword"
+                name="password"
+                id="password"
                 placeholder="Password"
+                required
               />
               <label for="floatingPassword">Password</label>
             </div>
+
             <hr />
-            <button class="btn btn-primary w-100 mb-3" type="submit">
+            <button
+              class="btn btn-primary w-100 mb-3 d-flex justify-content-center align-items-center"
+              type="submit"
+            >
               Login
             </button>
+
             <br />
             <div class="d-flex justify-content-center">
               You dont have account?

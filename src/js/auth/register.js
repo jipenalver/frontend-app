@@ -16,6 +16,7 @@ form_register.onsubmit = async (e) => {
   // Get All values from input, select, textarea under form tag
   const formData = new FormData(form_register);
 
+  // Check if bot password and password confirmation is the same
   if (formData.get("password") == formData.get("password_confirmation")) {
     // Do action if the condition is correct
 
@@ -44,7 +45,11 @@ form_register.onsubmit = async (e) => {
         .select();
 
       // Show Notification
-      if (error == null) successNotification("Registered Successfully!", 10);
+      if (error == null)
+        successNotification(
+          "Registered Successfully! <a href='./index.html'>Click here to Login!</a>",
+          20
+        );
       else {
         errorNotification(
           "Something wrong happened. Cannot register account.",
