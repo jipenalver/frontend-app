@@ -84,6 +84,11 @@
         <div class="col-sm-12">
           <h1 class="text-center">Registration</h1>
           <hr />
+
+          <!-- Alert Notification -->
+          <div class="alert alert-success d-none" role="alert"></div>
+          <div class="alert alert-danger d-none" role="alert"></div>
+
           <!-- Form -->
           <form id="form_register">
             <!-- Firstname Field -->
@@ -166,7 +171,10 @@
 
             <!-- Submit Button -->
             <hr />
-            <button class="btn btn-primary w-100 mb-3" type="submit">
+            <button
+              class="btn btn-primary w-100 mb-3 d-flex justify-content-center align-items-center"
+              type="submit"
+            >
               Register
             </button>
 
