@@ -13,6 +13,19 @@ const btn_logout = document.getElementById("btn_logout");
 
 btn_logout.onclick = doLogout;
 
+// Search Form Functionality
+const form_search = document.getElementById("form_search");
+
+form_search.onsubmit = async (e) => {
+  e.preventDefault();
+
+  // Get All values from input, select, textarea under form tag
+  const formData = new FormData(form_search);
+
+  // Reload Datas
+  getDatas(formData.get("keyword"));
+};
+
 // Submit Form Functionality; Both Functional for Create and Update
 const form_item = document.getElementById("form_item");
 
@@ -92,9 +105,15 @@ form_item.onsubmit = async (e) => {
 };
 
 // Load Data Functionality
-async function getDatas() {
+async function getDatas(keyword = "") {
   // Get all rows
-  let { data: items, error } = await supabase.from("items").select("*");
+  let { data: items, error } = await supabase
+    .from("items")
+    .select("*")
+    // .like("item_name", "%" + keyword + "%");
+    .or(
+      "item_name.ilike.%" + keyword + "%, description.ilike.%" + keyword + "%"
+    );
 
   // Temporary storage for html elements and each items
   let container = "";
@@ -169,7 +188,7 @@ const deleteAction = async (e) => {
     //getDatas(); // This is slow
 
     // Remove the Card from the list
-    document.querySelector(`.card[data-id="${id}"]`).remove();
+    document.querySelector(`.card[data-id="${id}"]`).remove(); // recommended approach
   } else {
     errorNotification("Something wrong happened. Cannot delete item.", 15);
     console.log(error);
