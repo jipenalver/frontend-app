@@ -27,31 +27,59 @@ form_item.onsubmit = async (e) => {
   // Get All values from input, select, textarea under form tag
   const formData = new FormData(form_item);
 
-  // Input Data Supabase
-  const { data, error } = await supabase
-    .from("items")
-    .insert([
-      {
+  if (for_update_id == "") {
+    // Supabase Create
+    const { data, error } = await supabase
+      .from("items")
+      .insert([
+        {
+          item_name: formData.get("item_name"),
+          price: formData.get("price"),
+          description: formData.get("description"),
+          // image_path: formData.get("image_path"), // If you dont have uploading, you can comment this
+        },
+      ])
+      .select();
+
+    if (error == null) {
+      successNotification("Item Successfully Added!", 15);
+
+      // Reload Datas
+      getDatas();
+    } else {
+      errorNotification("Something wrong happened. Cannot add item.", 15);
+      console.log(error);
+    }
+  }
+  // for Update
+  else {
+    const { data, error } = await supabase
+      .from("items")
+      .update({
         item_name: formData.get("item_name"),
         price: formData.get("price"),
         description: formData.get("description"),
         // image_path: formData.get("image_path"), // If you dont have uploading, you can comment this
-      },
-    ])
-    .select();
+      })
+      .eq("id", for_update_id)
+      .select();
 
-  if (error == null) {
-    successNotification("Item Successfully Added!", 15);
+    if (error == null) {
+      successNotification("Item Successfully Updated!", 15);
 
-    // Modal Close
-    document.getElementById("modal_close").click();
+      // Reset storage id
+      for_update_id = "";
 
-    // Reload Datas
-    getDatas();
-  } else {
-    errorNotification("Something wrong happened. Cannot add item.", 15);
-    console.log(error);
+      // Reload Datas
+      getDatas();
+    } else {
+      errorNotification("Something wrong happened. Cannot add item.", 15);
+      console.log(error);
+    }
   }
+
+  // Modal Close
+  document.getElementById("modal_close").click();
 
   // Reset Form
   form_item.reset();
@@ -152,6 +180,9 @@ const deleteAction = async (e) => {
   }
 };
 
+// Storage of Id of chosen data to update
+let for_update_id = "";
+
 // Edit Functionality; but show first
 const editAction = async (e) => {
   const id = e.target.getAttribute("data-id");
@@ -167,10 +198,17 @@ const editAction = async (e) => {
     .eq("id", id);
 
   if (error == null) {
+    // Store id to a variable; id will be utilize for update
+    for_update_id = items[0].id;
+
     // Assign values to the form
     document.getElementById("item_name").value = items[0].item_name;
     document.getElementById("price").value = items[0].price;
     document.getElementById("description").value = items[0].description;
+
+    // Change Button Text using textContent; either innerHTML or textContent is fine here
+    document.querySelector("#form_item button[type='submit']").textContent =
+      "Update";
   } else {
     errorNotification("Something wrong happened. Cannot show item.", 15);
     console.log(error);
