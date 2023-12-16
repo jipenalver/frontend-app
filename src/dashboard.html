@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <meta name="theme-color" content="#31d53d" />
 
-    <script src="./js/main.js" type="module"></script>
+    <script src="./js/system/dashboard.js" type="module"></script>
   </head>
   <body>
     <!-- Navbar -->
@@ -78,7 +78,7 @@
               <hr />
 
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="#" id="btn_logout">
                   <button class="btn btn-primary w-100">Logout</button>
                 </a>
               </li>
@@ -100,7 +100,17 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <h1>Welcome to Sample App, !</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#!">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Dashboard
+              </li>
+            </ol>
+          </nav>
+
+          <!-- Put Dashboard Elements below -->
+          <h1 class="text-center">Welcome to Sample App!</h1>
         </div>
       </div>
     </div>
