@@ -47,4 +47,22 @@ function errorNotification(message, seconds = 0) {
   }
 }
 
-export { supabase, successNotification, errorNotification };
+// Logout Function
+async function doLogout() {
+  // Supabase Logout
+  let { error } = await supabase.auth.signOut();
+
+  if (error == null) {
+    successNotification("Logout Successfully!");
+
+    // Clear local Storage
+    localStorage.clear();
+
+    // Redirect to login page
+    window.location.pathname = "/index.html";
+  } else {
+    errorNotification("Logout Failed!", 15);
+  }
+}
+
+export { supabase, successNotification, errorNotification, doLogout };

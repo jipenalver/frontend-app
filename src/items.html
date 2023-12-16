@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <meta name="theme-color" content="#31d53d" />
 
-    <script src="./js/main.js" type="module"></script>
+    <script src="./js/system/items.js" type="module"></script>
   </head>
   <body>
     <!-- Navbar -->
@@ -78,7 +78,7 @@
               <hr />
 
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="#" id="btn_logout">
                   <button class="btn btn-primary w-100">Logout</button>
                 </a>
               </li>
@@ -95,8 +95,16 @@
     <!-- Container -->
     <div class="container mt-5">
       <div class="row">
-        <!-- Modal Btn and Form -->
         <div class="col-sm-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="./dashboard.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Items</li>
+            </ol>
+          </nav>
+          <!-- Modal Btn and Form -->
           <!-- Modal -->
           <div
             class="modal fade"
@@ -111,7 +119,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                    Slides Form
+                    Item Information
                   </h1>
                   <button
                     type="button"
@@ -120,8 +128,8 @@
                     aria-label="Close"
                   ></button>
                 </div>
-                <!-- Slides Form -->
-                <form id="form_slides">
+                <!-- Item Form -->
+                <form id="form_item">
                   <!-- Modal Body -->
                   <div class="modal-body">
                     <!-- Item Name Field -->
@@ -132,7 +140,7 @@
                           type="text"
                           name="item_name"
                           id="item_name"
-                          placeholder="Slide Name"
+                          placeholder="Item Name"
                           required
                         />
                       </div>
@@ -231,7 +239,7 @@
                   data-bs-toggle="modal"
                   data-bs-target="#form_modal"
                 >
-                  Add Slide
+                  Add Item
                 </button>
                 <!-- End Button trigger modal  -->
               </div>
@@ -250,11 +258,117 @@
 
       <!-- Get All Data -->
       <div class="row pb-5" id="get_data">
-        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+        <!-- <div class="col-sm-12 d-flex justify-content-center align-items-center">
           <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
           <b class="ms-2">Loading Data...</b>
+        </div> -->
+
+        <div class="col-sm-12">
+          <div class="card w-100 mt-3" data-id="${element.carousel_item_id}">
+            <div class="row">
+              <div class="col-sm-4">
+                <img
+                  src="${backendURL}/storage/${element.image_path}"
+                  width="100%"
+                  height="225px"
+                />
+              </div>
+
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <div class="dropdown float-end">
+                    <button
+                      class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          id="btn_edit"
+                          data-id="${element.carousel_item_id}"
+                          >Edit</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          id="btn_delete"
+                          data-id="${element.carousel_item_id}"
+                          >Delete</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+
+                  <h5 class="card-title">Item</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">
+                    <small>Price</small>
+                  </h6>
+                  <p class="card-text">Description</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="card w-100 mt-3" data-id="${element.carousel_item_id}">
+            <div class="row">
+              <div class="col-sm-4">
+                <img
+                  src="${backendURL}/storage/${element.image_path}"
+                  width="100%"
+                  height="225px"
+                />
+              </div>
+
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <div class="dropdown float-end">
+                    <button
+                      class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          id="btn_edit"
+                          data-id="${element.carousel_item_id}"
+                          >Edit</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          id="btn_delete"
+                          data-id="${element.carousel_item_id}"
+                          >Delete</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+
+                  <h5 class="card-title">Item</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">
+                    <small>Price</small>
+                  </h6>
+                  <p class="card-text">Description</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
