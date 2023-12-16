@@ -22,11 +22,32 @@ form_login.onsubmit = async (e) => {
     password: formData.get("password"),
   });
 
-  console.log(data);
+  // Get data for session and user
+  let session = data.session;
+  let user = data.user;
 
-  // Show Notification
-  if (error == null) successNotification("Login Successfully!");
-  else {
+  // If User can be accessed; Or user is already verified
+  if (session != null) {
+    // Store tokens for API
+    localStorage.setItem("access_token", session.access_token);
+    localStorage.setItem("refresh_token", session.refresh_token);
+
+    // For role based authentication; uncomment if you want to implement
+    // let { data: users_information, error } = await supabase
+    //   .from("users_information")
+    //   .select("*") // You can specifically set what column, read docu for more info
+    //   .eq("user_id", user.id);
+    // console.log(users_information);
+    // localStorage.setItem("role", users_information.role);
+  }
+
+  if (error == null) {
+    // Show Notification
+    successNotification("Login Successfully!");
+
+    // Redirect to dashboard
+    window.location.pathname = "/dashboard.html";
+  } else {
     errorNotification("Something wrong happened. Cannot login account.", 10);
     console.log(error);
   }
@@ -37,7 +58,4 @@ form_login.onsubmit = async (e) => {
   // Enable Submit Button
   document.querySelector("#form_login button").disabled = false;
   document.querySelector("#form_login button").innerHTML = `Login`;
-
-  // Redirect to dashboard
-  window.location.pathname = "/dashboard.html";
 };

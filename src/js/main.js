@@ -4,8 +4,14 @@ import "../scss/styles.scss";
 // Import all of Bootstrap's JS
 import * as bootstrap from "bootstrap";
 
+// Import Router
+import { setRouter } from "./router/router.js";
+
 // Import supabase
 import { createClient } from "@supabase/supabase-js";
+
+// Set Router
+setRouter();
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
