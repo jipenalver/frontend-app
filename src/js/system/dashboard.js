@@ -1,9 +1,4 @@
-import {
-  supabase,
-  successNotification,
-  errorNotification,
-  doLogout,
-} from "../main";
+import { doLogout } from "../main";
 
 // Assign Logout Functionality
 const btn_logout = document.getElementById("btn_logout");
