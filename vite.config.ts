@@ -12,6 +12,7 @@ export default defineConfig({
         main: resolve(__dirname, 'src/index.html'),
         register: resolve(__dirname, 'src/register.html'),
         dashboard: resolve(__dirname, 'src/dashboard.html'),
+        items: resolve(__dirname, 'src/items.html'),
       }
     }
   },
