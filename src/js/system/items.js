@@ -5,6 +5,9 @@ import {
   doLogout,
 } from "../main";
 
+const itemsImageUrl =
+  "https://lsuibxpvxqrxhkmxcmwy.supabase.co/storage/v1/object/public/items/";
+
 // Load Data
 getDatas();
 
@@ -40,6 +43,26 @@ form_item.onsubmit = async (e) => {
   // Get All values from input, select, textarea under form tag
   const formData = new FormData(form_item);
 
+  // Supabase Image Upload
+  const image = formData.get("image_path");
+  const { data, error } = await supabase.storage
+    .from("items")
+    .upload("public/" + image.name, image, {
+      cacheControl: "3600",
+      upsert: true,
+    });
+  // Pass supabase image data to image_data
+  const image_data = data;
+
+  // Error notification for upload
+  if (error) {
+    errorNotification(
+      "Something wrong happened. Cannot upload image, image size might be too big. You may update the item's image.",
+      15
+    );
+    console.log(error);
+  }
+
   if (for_update_id == "") {
     // Supabase Create
     const { data, error } = await supabase
@@ -49,7 +72,7 @@ form_item.onsubmit = async (e) => {
           item_name: formData.get("item_name"),
           price: formData.get("price"),
           description: formData.get("description"),
-          // image_path: formData.get("image_path"), // If you dont have uploading, you can comment this
+          image_path: image_data == null ? null : image_data.path, // If you dont have uploading, you can comment this
         },
       ])
       .select();
@@ -72,7 +95,7 @@ form_item.onsubmit = async (e) => {
         item_name: formData.get("item_name"),
         price: formData.get("price"),
         description: formData.get("description"),
-        // image_path: formData.get("image_path"), // If you dont have uploading, you can comment this
+        image_path: image_data == null ? null : image_data.path, // If you dont have uploading, you can comment this
       })
       .eq("id", for_update_id)
       .select();
@@ -124,7 +147,9 @@ async function getDatas(keyword = "") {
 
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="${item.image_path}" width="100%" height="225px">
+                                <img src="${
+                                  itemsImageUrl + item.image_path
+                                }" width="100%" height="225px">
                             </div>
 
                             <div class="col-sm-8">
@@ -134,15 +159,21 @@ async function getDatas(keyword = "") {
                                         <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="#" id="btn_edit" data-id="${item.id}">Edit</a>
+                                                <a class="dropdown-item" href="#" id="btn_edit" data-id="${
+                                                  item.id
+                                                }">Edit</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="#" id="btn_delete" data-id="${item.id}">Delete</a>
+                                                <a class="dropdown-item" href="#" id="btn_delete" data-id="${
+                                                  item.id
+                                                }">Delete</a>
                                             </li>
                                         </ul>
                                     </div>
                                 
-                                    <h5 class="card-title">${item.item_name}</h5>
+                                    <h5 class="card-title">${
+                                      item.item_name
+                                    }</h5>
                                     <h6 class="card-subtitle mb-2 text-body-secondary">
                                         <small>${item.price}</small>
                                     </h6>
