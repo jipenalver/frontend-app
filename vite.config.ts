@@ -13,6 +13,7 @@ export default defineConfig({
         register: resolve(__dirname, 'src/register.html'),
         dashboard: resolve(__dirname, 'src/dashboard.html'),
         items: resolve(__dirname, 'src/items.html'),
+        chat: resolve(__dirname, 'src/chat.html'),
       }
     }
   },

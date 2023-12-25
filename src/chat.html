@@ -62,13 +62,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="./dashboard.html"
-                >
-                  Dashboard
-                </a>
+                <a class="nav-link" href="./dashboard.html"> Dashboard </a>
               </li>
 
               <li class="nav-item">
@@ -76,7 +70,12 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="./chat.html">Chat</a>
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="./chat.html"
+                  >Chat</a
+                >
               </li>
 
               <hr />
@@ -104,17 +103,65 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#!">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Dashboard
-              </li>
-            </ol>
-          </nav>
+          <!-- Chatbox -->
+          <div class="card div-chat">
+            <div class="card-header d-flex justify-content-center p-3">
+              <button
+                type="button"
+                class="btn btn-light btn-sm text-dark fw-bold"
+              >
+                <img
+                  src="./assets/imgs/ic_logo.png"
+                  alt="Logo"
+                  width="30"
+                  height="28"
+                />
+                Powered by OpenAI
+              </button>
+            </div>
 
-          <!-- Put Dashboard Elements below -->
-          <h1 class="text-center">Welcome to Sample App!</h1>
+            <!-- Conversation Area -->
+            <div id="div-conversation" class="card-body">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Loading ...
+            </div>
+
+            <!-- Message Form -->
+            <div
+              class="card-footer text-muted d-flex justify-content-start align-items-center p-3"
+            >
+              <img
+                class="img-you"
+                width="30"
+                height="30"
+                src="./assets/imgs/img_you.png"
+                alt=""
+              />
+              <form id="form_chat" class="d-flex justify-content-center">
+                <input
+                  type="text"
+                  name="message"
+                  id="message"
+                  class="form-control form-control-lg"
+                  placeholder="Type message"
+                  required
+                />
+                <button class="ms-3 btn btn-primary" type="submit">
+                  <img
+                    src="./assets/imgs/ic_plane.png"
+                    width="30"
+                    height="30"
+                    alt=""
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+          <!-- End Chatbox -->
         </div>
       </div>
     </div>

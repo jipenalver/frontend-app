@@ -12,6 +12,7 @@ function setRouter() {
     // If you are not logged in you cant access dashboard pages; redirect to /
     case "/dashboard.html":
     case "/items.html": // Add more case if there are more pages
+    case "/chat.html":
       if (!localStorage.getItem("access_token")) {
         window.location.pathname = "/index.html";
       }
