@@ -3,3 +3,48 @@ body {
   padding: 0;
   margin: 0;
 }
+
+/* Chat-Area */
+
+.card-body {
+  position: relative;
+  overflow: scroll;
+}
+
+img.img-you,
+img.img-junjun {
+  width: 40px;
+  height: 100%;
+}
+
+/* Chat-Div */
+
+.div-chat {
+  border: 0px !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 93% !important;
+}
+
+.div-chat .card-header {
+  background-color: transparent !important;
+}
+
+.div-chat .form-control {
+  border-color: transparent;
+}
+
+.div-chat .form-control:focus {
+  border-color: transparent;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.div-chat .divider:after,
+.div-chat .divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
