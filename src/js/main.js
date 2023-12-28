@@ -10,6 +10,15 @@ import { setRouter } from "./router/router.js";
 // Import supabase
 import { createClient } from "@supabase/supabase-js";
 
+// Import OpenAi
+import OpenAI from "openai";
+
+// Initialize openAI
+const openai = new OpenAI({
+  apiKey: "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",
+  dangerouslyAllowBrowser: true,
+});
+
 // Set Router
 setRouter();
 
@@ -65,4 +74,4 @@ async function doLogout() {
   }
 }
 
-export { supabase, successNotification, errorNotification, doLogout };
+export { supabase, openai, successNotification, errorNotification, doLogout };
