@@ -15,7 +15,7 @@ import OpenAI from "openai";
 
 // Initialize openAI
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "",
   dangerouslyAllowBrowser: true,
 });
 
@@ -23,10 +23,7 @@ const openai = new OpenAI({
 setRouter();
 
 // Create a single supabase client for interacting with your database
-const supabase = createClient(
-  "https://lsuibxpvxqrxhkmxcmwy.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxzdWlieHB2eHFyeGhrbXhjbXd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIwNjUyMzQsImV4cCI6MTk5NzY0MTIzNH0.qesflUyB8fXj7PN7shZDrzo_voKwCVfCtz4YxFvHh3c"
-);
+const supabase = createClient("https://lsuibxpvxqrxhkmxcmwy.supabase.co", "");
 
 // Success Notification
 function successNotification(message, seconds = 0) {
