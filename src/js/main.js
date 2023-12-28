@@ -10,14 +10,20 @@ import { setRouter } from "./router/router.js";
 // Import supabase
 import { createClient } from "@supabase/supabase-js";
 
+// Import OpenAi
+import OpenAI from "openai";
+
+// Initialize openAI
+const openai = new OpenAI({
+  apiKey: "",
+  dangerouslyAllowBrowser: true,
+});
+
 // Set Router
 setRouter();
 
 // Create a single supabase client for interacting with your database
-const supabase = createClient(
-  "https://lsuibxpvxqrxhkmxcmwy.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxzdWlieHB2eHFyeGhrbXhjbXd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIwNjUyMzQsImV4cCI6MTk5NzY0MTIzNH0.qesflUyB8fXj7PN7shZDrzo_voKwCVfCtz4YxFvHh3c"
-);
+const supabase = createClient("https://lsuibxpvxqrxhkmxcmwy.supabase.co", "");
 
 // Success Notification
 function successNotification(message, seconds = 0) {
@@ -65,4 +71,4 @@ async function doLogout() {
   }
 }
 
-export { supabase, successNotification, errorNotification, doLogout };
+export { supabase, openai, successNotification, errorNotification, doLogout };
