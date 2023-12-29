@@ -1,4 +1,4 @@
-import { doLogout, openai, supabase } from "../main";
+import { doLogout, openai, supabase, errorNotification } from "../main";
 
 // Load Images from assets to Show it in Mobile
 import imgYou from "../../assets/imgs/img_you.png";
@@ -63,7 +63,10 @@ form_chat.onsubmit = async (e) => {
       console.log(error);
     }
   } else {
-    errorNotification("Something wrong happened. Cannot access OpenAI.", 15);
+    errorNotification(
+      "Something wrong happened. Cannot access OpenAI API.",
+      15
+    );
   }
 
   // Reset Form
