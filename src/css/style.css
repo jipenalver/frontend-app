@@ -4,19 +4,6 @@ body {
   margin: 0;
 }
 
-/* Chat-Area */
-
-.card-body {
-  position: relative;
-  overflow: scroll;
-}
-
-img.img-you,
-img.img-junjun {
-  width: 40px;
-  height: 100%;
-}
-
 /* Chat-Div */
 
 .div-chat {
@@ -47,4 +34,17 @@ img.img-junjun {
   flex: 1;
   height: 1px;
   background: #eee;
+}
+
+/* Chat-Area */
+
+img.img-you,
+img.img-junjun {
+  width: 40px;
+  height: 100%;
+}
+
+.div-chat .card-body {
+  position: relative;
+  overflow: scroll;
 }
