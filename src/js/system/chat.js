@@ -1,5 +1,9 @@
 import { doLogout, openai, supabase } from "../main";
 
+// Load Images from assets to Show it in Mobile
+import imgYou from "../../assets/imgs/img_you.png";
+import imgMime from "../../assets/imgs/img_junjun.png";
+
 // Assign Logout Functionality
 const btn_logout = document.getElementById("btn_logout");
 
@@ -29,7 +33,7 @@ form_chat.onsubmit = async (e) => {
       {
         role: "system",
         content:
-          "You are Alexa, a chatbot that reluctantly answers questions with sarcastic responses.",
+          "You are Meme, a chatbot that reluctantly answers questions with sarcastic responses.",
       },
       ...ai_array, // Optional; So that it can remember previous chats by passing the array; you can comment if you dont like
       { role: "user", content: formData.get("message") },
@@ -106,11 +110,11 @@ async function getDatas(keyword = "") {
                               ${is_today ? time : date}
                           </p>
                       </div>
-                      <img class="img-junjun" src="./assets/imgs/img_you.png" alt="">
+                      <img class="img-junjun" src="${imgYou}" alt="">
                   </div>
 
                   <div class="d-flex flex-row justify-content-start mb-4 pt-1">
-                      <img class="img-you" src="./assets/imgs/img_junjun.png" alt="">
+                      <img class="img-you" src="${imgMime}" alt="">
                       <div>
                           <p class="small p-2 ms-3 mb-1 rounded-3 theme-bg-surface">
                               ${row.response} 
